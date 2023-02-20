@@ -5,8 +5,8 @@ import dlo.demo1.data.external.domain.ExternalData;
 import dlo.demo1.data.external.dto.ExternalRequest;
 import dlo.demo1.data.internal.InternalRepository;
 import dlo.demo1.data.internal.application.DataMapper;
-import dlo.demo1.data.internal.dto.InternalRequest;
-import dlo.demo1.data.internal.type.Type;
+import dlo.demo1.data.internal.dto.InternalDataCreateDto;
+import dlo.demo1.data.common.type.Type;
 import java.util.List;
 import java.util.NoSuchElementException;
 import lombok.RequiredArgsConstructor;
@@ -21,17 +21,14 @@ public class StreamService extends DataMapper {
 
     private final InternalRepository repository;
     private final SetupRepository setupRepository;
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
-    public void stream() {
-        InternalRequest build = InternalRequest.builder()
-            .type(Type.Y)
-            .build();
-
-        ExternalRequest map = modelMapper.map(build, ExternalRequest.class);
-        List<ExternalData> externalData = setupRepository.findAllByType(map)
+    public List<InternalDataCreateDto> stream() {
+        List<ExternalData> externalData = setupRepository.findAllByType(Type.Y)
             .orElseThrow(NoSuchElementException::new);
 
+        return this.dataMapper(externalData);
 
     }
+
 }

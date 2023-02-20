@@ -1,6 +1,6 @@
 package dlo.demo1.data.internal.dto;
 
-import dlo.demo1.data.internal.type.Type;
+import dlo.demo1.data.common.type.Type;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

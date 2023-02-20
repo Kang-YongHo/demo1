@@ -1,4 +1,4 @@
-package dlo.demo1.data.external.type;
+package dlo.demo1.data.common.type;
 
 import lombok.Getter;
 
@@ -13,8 +13,8 @@ public enum Type {
         this.desc = desc;
     }
 
-    public static Type random(int randomNo){
-        if(randomNo == 1) return Type.N;
-        return Type.Y;
+    public static Type random(int r){
+        if(r==1) return Y;
+        return N;
     }
 }

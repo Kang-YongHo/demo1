@@ -1,6 +1,6 @@
 package dlo.demo1.data.internal.domain;
 
-import dlo.demo1.data.internal.type.Type;
+import dlo.demo1.data.common.type.Type;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +10,7 @@ import jakarta.persistence.Index;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -48,8 +49,8 @@ public class Order {
     private LocalDateTime localDateTime;
     private Type type;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
-    private List<OrderItem> orderItems = new java.util.ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;

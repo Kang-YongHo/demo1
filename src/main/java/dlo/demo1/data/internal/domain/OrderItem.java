@@ -1,6 +1,6 @@
 package dlo.demo1.data.internal.domain;
 
-import dlo.demo1.data.internal.type.Type;
+import dlo.demo1.data.common.type.Type;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

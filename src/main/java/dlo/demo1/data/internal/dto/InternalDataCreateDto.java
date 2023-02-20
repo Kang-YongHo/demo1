@@ -1,14 +1,7 @@
-package dlo.demo1.data.external.domain;
+package dlo.demo1.data.internal.dto;
 
 import dlo.demo1.data.common.type.Type;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -16,15 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
 @Getter
-@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class ExternalData {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class InternalDataCreateDto {
 
     private String title;
 
@@ -48,17 +35,36 @@ public class ExternalData {
     private LocalDateTime localDateTime;
     private Type type;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "externalData")
-    private List<ExternalItem> items = new ArrayList<>();
+    private List<InternalItem> items;
+    @Getter
+    @Setter
+    private static class InternalItem{
+        private String ItemColumn1;
+        private String ItemColumn2;
+        private String ItemColumn3;
+        private String ItemColumn4;
+        private String ItemColumn5;
+        private String ItemColumn6;
+        private String ItemColumn7;
+        private String ItemColumn8;
+        private String ItemColumn9;
+        private String ItemColumn10;
+        private String ItemColumn11;
+        private String ItemColumn12;
+        private String ItemColumn13;
+        private String ItemColumn14;
+        private String ItemColumn15;
+        private String ItemColumn16;
+        private String ItemColumn17;
+    }
 
     @Builder
-    public ExternalData(Long id, String title, String column1, String column2, String column3,
+    public InternalDataCreateDto(String title, String column1, String column2, String column3,
         String column4, String column5, String column6, String column7, String column8,
         String column9,
         String column10, String column11, String column12, String column13, String column14,
         String column15, String column16, String column17, LocalDateTime localDateTime, Type type,
-        List<ExternalItem> items) {
-        this.id = id;
+        List<InternalItem> items) {
         this.title = title;
         this.column1 = column1;
         this.column2 = column2;
@@ -80,10 +86,5 @@ public class ExternalData {
         this.localDateTime = localDateTime;
         this.type = type;
         this.items = items;
-    }
-
-    public void mappingItems(){
-        this.items.forEach(x->x.setExternalData(this));
-
     }
 }
